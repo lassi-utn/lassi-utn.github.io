@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>WEB intro lógica </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius:0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #355;
+      color: white;
+      padding: 15px;
+    }
+	
+  
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"  > Logo </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar" >
+      <ul class="nav navbar-nav" >
+		<li><a href="#">El proyecto</a></li>
+        <li><a href="">Saludos...</a></li>
+        <li><a href="#">Esto o aquello...</a></li>
+		<li class="active"><a href="file:///C:/Users/DeXuS/Desktop/LaSSI/webLogica/lassi-utn.github.io/repetirAyuda_Para.html">Repetir ayuda...</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <h4><a href="http://pseint.sourceforge.net/index.php?page=descargas.php"><span class="glyphicon glyphicon-download"></span> PSeInt</a></h4>
+	  </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+	  <p><a class="active">Una situación repetitiva...</a></p>
+	  <p><a href="#">Repitiendo sin repetir…</a></p>
+      <p><a href="#">Repetir o no repetir…</a></p>
+	  <p><a href="#">Repitamos para no olvidar…</a></p>
+    </div>
+    <div class="col-sm-8 text-left"> 
+      
+<h2> Una situación repetitiva... </h2>
+	<p> Bueno, ya tenemos un algoritmo que nos saluda con nuestro nombre. Pero no seamos egoístas, hagamos uno que también salude a algunos amigos. 
+	Digamos que, por ahora, pueda saludarnos a nosotros (a cada uno que lo ejecute) y a otros dos amigos. 
+	Podríamos entonces escribir un algoritmo con las siguientes instrucciones:
+	<br>
+	
+<hr>
+<div id="main" class="container-fluid">
+        <h4>Pseudocódigo</h4>
+		<pre id="textoACopiar" class="shadow p-3 mb-5 bg-white rounded"><code class="adapt">
+	Proceso Nombre_2
+	definir nombre1, nombre2, nombre3 como caracter
+
+	escribir "Hola, ¿cómo te llamás?"
+	leer nombre1
+	escribir "Hola ", nombre1, ", un gusto conocerte" 
+	
+	escribir " Hola, ¿cómo te llamás?"
+	leer nombre2
+	escribir "Hola ", nombre2, ", un gusto conocerte"
+	
+	escribir " Hola, ¿cómo te llamás?"
+	leer nombre3
+	escribir "Hola ", nombre3, ", un gusto conocerte"
+
+	escribir "Es un gusto conocerlos a todos :-) "
+	FinProceso
+        </code></pre>
+        <button id="btnCopiar" class="btn btn-primary">COPIAR pseudocódigo al portapapeles</button>
+        <div id="alerta" class="alert invisible"></div>
+    </div>
+	
+	<script>
+    //Asigno el evento "click" del botón para provoar el copiado
+    document.getElementById('btnCopiar').addEventListener('click', copiarAlPortapapeles);
+
+    //Función que lanza el copiado del código
+    function copiarAlPortapapeles(ev){
+        var codigoACopiar = document.getElementById('textoACopiar');    //Elemento a copiar
+        //Debe estar seleccionado en la página para que surta efecto, así que...
+        var seleccion = document.createRange(); //Creo una nueva selección vacía
+        seleccion.selectNodeContents(codigoACopiar);    //incluyo el nodo en la selección
+        //Antes de añadir el intervalo de selección a la selección actual, elimino otros que pudieran existir (sino no funciona en Edge)
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(seleccion);  //Y la añado a lo seleccionado actualmente
+        try {
+            var res = document.execCommand('copy'); //Intento el copiado
+            if (res)
+                exito();
+            else
+                fracaso();
+
+            mostrarAlerta();
+        }
+        catch(ex) {
+            excepcion();
+        }
+        window.getSelection().removeRange(seleccion);
+    }
+
+///////
+// Auxiliares para mostrar y ocultar mensajes
+///////
+    var divAlerta = document.getElementById('alerta');
+    
+    function exito() {
+        divAlerta.innerText = '¡¡Código copiado al portapapeles!!';
+        divAlerta.classList.add('alert-success');
+    }
+
+    function fracaso() {
+        divAlerta.innerText = '¡¡Ha fallado el copiado al portapapeles!!';
+        divAlerta.classList.add('alert-warning');
+    }
+
+    function excepcion() {
+        divAlerta.innerText = 'Se ha producido un error al copiar al portapaples';
+        divAlerta.classList.add('alert-danger');
+    }
+
+    function mostrarAlerta() {
+        divAlerta.classList.remove('invisible');
+        divAlerta.classList.add('visible');
+        setTimeout(ocultarAlerta, 1500);
+    }
+
+    function ocultarAlerta() {
+        divAlerta.innerText = '';
+        divAlerta.classList.remove('alert-success', 'alert-warning', 'alert-danger', 'visible');
+        divAlerta.classList.add('invisible');
+    }
+</script>
+<h3> Observando...</h3>
+Bien, quizá hayan notado que el bloque necesario para leer nuestro nombre y escribirlo en el saludo, como se ve en el algoritmo Nombre_1, se repite tres veces en el algoritmo Nombre_2. 
+Se repite para poder leer y escribir nuestro nombre y el de nuestros dos amigos. 
+La secuencia de instrucciones es la misma, y la replicamos tres veces. Y como son tres nombres, se necesitan tres variables, una por cada nombre que el algoritmo necesita guardar, para luego mostrar.
+Imaginemos que un algoritmo con la estructura presentada anteriormente es empleado por un sistema que se encarga de saludar a cada persona que ingresa a un centro comercial. 
+¡Necesitaríamos que nuestro algoritmo tuviera miles de variables para guardar cada uno de los nombres de los miles de visitantes al centro comercial! y en el mismo sentido, ¡miles de líneas de código para repetir una y otra vez la misma secuencia de lectura y escritura de los nombres de los visitantes!
+¿No les parece que a dicho problema lo podríamos evitar escribiendo una sola vez la secuencia de lectura y escritura de los nombres, y haciendo que el algoritmo recorra una y otra vez dicha secuencia? Algo así como esto:
+<br>
+<img src="cicloreadwrite.jpg" height="80px" width="140px"/>
+<br>
+<br>
+De esta manera, lee el nombre y a continuación escribe el nombre, luego lee otro nombre, escribe ese nuevo nombre, vuelve a leer un tercer nombre…y así sucesiva y repetitivamente.
+¿Tiene sentido no? Por suerte para nosotros, esta forma de hacer que una secuencia de acciones se repita una y otra vez en un ciclo (o bucle) es una de las estructuras básicas de control de algoritmos.
+<br>
+<br>
+
+</body>          
+	</div>
+
+	
+	
+	
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+		<h5><a href="https://www.facebook.com/LASSI-Laboratorio-de-Sistemas-de-Soporte-a-la-Industria-104336884799374/" target="_blank">LaSSI</a></h5>
+        <p<h5><a href="https://www.frc.utn.edu.ar/" target="_blank"> <img src="utn frc.jpg" height="100px" width="150px"/> </a></h5>
+		
+      </div>
+	 </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-right">
+  <p>Desarrollo</p>
+</footer>
+
+</body>
+</html>

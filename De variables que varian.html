@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>WEB intro lógica </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius:0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #355;
+      color: white;
+      padding: 15px;
+    }
+	
+  
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"  > Logo </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar" >
+      <ul class="nav navbar-nav" >
+		<li><a href="#">El proyecto</a></li>
+        <li class="active"><a href="file:///C:/Users/DeXuS/Desktop/LaSSI/webLogica/lassi-utn.github.io/saludos.html">Saludos...</a></li>
+        <li><a href="#">Esto o aquello...</a></li>
+		<li><a href="#">Repetir ayuda...</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <h4><a href="http://pseint.sourceforge.net/index.php?page=descargas.php"><span class="glyphicon glyphicon-download"></span> PSeInt</a></h4>
+	  </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+	<p><a href="#">Un saludo de… la compu</a></p>
+      <p><a class="active">De variables que varían…</a></p>
+	  <p><a href="#">De lecturas y escrituras…</a></p>
+	  
+    </div>
+    <div class="col-sm-8 text-left"> 
+      
+	  
+<script src="clipboard.min.js"></script>
+<h2> De variables que varían... </h2>
+	<p> Lo primero que vemos en el código del saludo es:.</p> <br>
+	<pre> Definir nombre como caracter </pre>
+Aquí lo que hace el algoritmo es instruir, mediante la palabra DEFINIR, la generacion de una variable con dicho nombre.<br>
+Además, establece que el tipo de dato que puede guardar la variable creada es CARACTER.<br>
+<h3> ¿Qué es una variable? </h3>
+Aquí variable, toma un significado diferente al empleado en álgebra. Una variable es un espacio en la memoria de la compu que se genera para guardar allí valores
+que el algoritmo empleará durante la ejecución.<br>
+<br>
+<h4> La analogía del autobus... </h4>
+<br>
+<img src="autobus1.jpg" height="120px" width="320px"/>
+<br>
+Supongamos que un bus hace un viaje diario desde Algo city hasta Ritmo city. El bus tiene tres asientos llamados A1, A2 y A3.<br>
+Los días 1, 2 y 3, realiza sus viajes con los siguientes pasajeros asignados a los asientos según se ve en las figuras:<br>
+<img src="autobus2.jpg" height="150px" width="260px"/>
+<br>
+<img src="autobus3.jpg" height="150px" width="260px"/>
+<br>
+<img src="autobus4.jpg" height="150px" width="260px"/>
+<br>
+<br>
+Aquí la pregunta es: ¿qué se mantuvo "fijo" en el bus y con el mismo nombre durante los 3 viajes?<br>
+Así es! los asientos. <br>
+Y ¿qué es lo que cambió en cada viaje?<br>
+Muy bien! los pasajeros. <br>
+<br>
+Esta sitiación es una perfecta analogía para comprender la diferencia entre variable y valores que usamos en la ejecución de los algoritmos:<br>
+El colectivo es el algoritmo.<br>
+Cada viaje es cada ejecución (realización, puesta en funcionamiento) del algoritmo.<br>
+Los asientos son las variables !<br>
+Y los pasajeros son los valores que se asignan a las variables durante la ejecución del algoritmo !<br>
+<br>
+Por supuesto que esto es una simplificación para entender el concepto de variable, y que hay otras cuestiones a tener en cuenta, como por ejemplo
+el hecho de las los valores de las variables pueden cambiar (o variar, de allí el nombre de variable) durante la ejecución del algoritmo.
+</p>
+          
+	</div>
+	
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+		<h5><a href="https://www.facebook.com/LASSI-Laboratorio-de-Sistemas-de-Soporte-a-la-Industria-104336884799374/" target="_blank">LaSSI</a></h5>
+        <p<h5><a href="https://www.frc.utn.edu.ar/" target="_blank"> <img src="utn frc.jpg" height="100px" width="150px"/> </a></h5>
+		
+      </div>
+	 </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-right">
+  <p>Desarrollo</p>
+</footer>
+
+</body>
+</html>

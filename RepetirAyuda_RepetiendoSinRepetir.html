@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>WEB intro lógica </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius:0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #355;
+      color: white;
+      padding: 15px;
+    }
+	
+  
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"  > Logo </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar" >
+      <ul class="nav navbar-nav" >
+		<li><a href="#">El proyecto</a></li>
+        <li><a href="">Saludos...</a></li>
+        <li><a href="#">Esto o aquello...</a></li>
+		<li class="active"><a href="file:///C:/Users/DeXuS/Desktop/LaSSI/webLogica/lassi-utn.github.io/repetirAyuda_Para.html">Repetir ayuda...</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <h4><a href="http://pseint.sourceforge.net/index.php?page=descargas.php"><span class="glyphicon glyphicon-download"></span> PSeInt</a></h4>
+	  </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+	  <p><a href="#">Una situación repetitiva...</a></p>
+	  <p><a class="active">Repitiendo sin repetir…</a></p>
+      <p><a href="#">Repetir o no repetir…</a></p>
+	  <p><a href="#">Repitamos para no olvidar…</a></p>
+    </div>
+    <div class="col-sm-8 text-left"> 
+      
+<h2> Repitiendo sin repetir... </h2>
+	<p> Bien, aprovechando que la lógica de algoritmos nos lo permite, ahora replanteamos nuestra solución para saludar a nuestro grupo de tres amigos, de la siguiente manera::
+	<br>
+	
+<hr>
+<div id="main" class="container-fluid">
+        <h4>Pseudocódigo</h4>
+		<pre id="textoACopiar" class="shadow p-3 mb-5 bg-white rounded"><code class="adapt">
+	Proceso Nombre_3
+	definir contVueltas como entero
+	definir nombre como caracter
+	Para contVueltas <- 1 Hasta 3 Con Paso 1 Hacer
+		escribir " ************************* "
+		escribir "Hola, ¿cómo te llamas?"
+		leer nombre
+		escribir "Hola ", nombre, ", un gusto conocerte" 
+	FinPara
+	escribir "Es un gusto conocerlos a todos :-) "
+	FinProceso
+	</code></pre>
+        <button id="btnCopiar" class="btn btn-primary">COPIAR pseudocódigo al portapapeles</button>
+        <div id="alerta" class="alert invisible"></div>
+    </div>
+	<script>
+    //Asigno el evento "click" del botón para provoar el copiado
+    document.getElementById('btnCopiar').addEventListener('click', copiarAlPortapapeles);
+
+    //Función que lanza el copiado del código
+    function copiarAlPortapapeles(ev){
+        var codigoACopiar = document.getElementById('textoACopiar');    //Elemento a copiar
+        //Debe estar seleccionado en la página para que surta efecto, así que...
+        var seleccion = document.createRange(); //Creo una nueva selección vacía
+        seleccion.selectNodeContents(codigoACopiar);    //incluyo el nodo en la selección
+        //Antes de añadir el intervalo de selección a la selección actual, elimino otros que pudieran existir (sino no funciona en Edge)
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(seleccion);  //Y la añado a lo seleccionado actualmente
+        try {
+            var res = document.execCommand('copy'); //Intento el copiado
+            if (res)
+                exito();
+            else
+                fracaso();
+
+            mostrarAlerta();
+        }
+        catch(ex) {
+            excepcion();
+        }
+        window.getSelection().removeRange(seleccion);
+    }
+
+///////
+// Auxiliares para mostrar y ocultar mensajes
+///////
+    var divAlerta = document.getElementById('alerta');
+    
+    function exito() {
+        divAlerta.innerText = '¡¡Código copiado al portapapeles!!';
+        divAlerta.classList.add('alert-success');
+    }
+
+    function fracaso() {
+        divAlerta.innerText = '¡¡Ha fallado el copiado al portapapeles!!';
+        divAlerta.classList.add('alert-warning');
+    }
+
+    function excepcion() {
+        divAlerta.innerText = 'Se ha producido un error al copiar al portapaples';
+        divAlerta.classList.add('alert-danger');
+    }
+
+    function mostrarAlerta() {
+        divAlerta.classList.remove('invisible');
+        divAlerta.classList.add('visible');
+        setTimeout(ocultarAlerta, 1500);
+    }
+
+    function ocultarAlerta() {
+        divAlerta.innerText = '';
+        divAlerta.classList.remove('alert-success', 'alert-warning', 'alert-danger', 'visible');
+        divAlerta.classList.add('invisible');
+    }
+</script>
+<h3> Observando...</h3>
+Observen que la cantidad de nombres que nos pide ingresar el algoritmo es tres. Entonces son tres los ciclos o iteraciones que realiza (uno por cada amigo). 
+Luego de ingresar el tercero, el algoritmo ya no tiene más elementos para procesar, y entonces sale del bucle.
+Este tipo de estructura en el algoritmo que nos permite repetir una y otra vez una serie de instrucciones, siempre que conozcamos la cantidad de repeticiones que necesitamos realizar, se conoce como Repetitiva Para (o Desde).
+<br>
+<br>
+<h3> Juguemos en PSeInt...</h3>
+Utilizando la función “Ejecución Paso a Paso” de PSeInt, veamos qué es lo que va sucediendo en la consola de interfaz:<br>
+ 
+1.	¿En qué línea el algoritmo se detiene esperando el ingreso de un dato?<br>
+2.	¿Qué impresiones va realizando?<br>
+3.	¿A dónde regresa el algoritmo una vez que repite instrucciones?; es decir, una vez que realiza una nueva iteración.<br>
+4.	¿Qué instrucciones vuelve a ejecutar?<br>
+<br>
+<br>
+</body>          
+	</div>
+
+	
+	
+	
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+		<h5><a href="https://www.facebook.com/LASSI-Laboratorio-de-Sistemas-de-Soporte-a-la-Industria-104336884799374/" target="_blank">LaSSI</a></h5>
+        <p<h5><a href="https://www.frc.utn.edu.ar/" target="_blank"> <img src="utn frc.jpg" height="100px" width="150px"/> </a></h5>
+		
+      </div>
+	 </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-right">
+  <p>Desarrollo</p>
+</footer>
+
+</body>
+</html>
