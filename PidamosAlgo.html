@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>WEB intro lógica </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius:0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #355;
+      color: white;
+      padding: 15px;
+    }
+	
+  
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+    
+    
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar" >
+      <ul class="nav navbar-nav" >
+		<li><a href="#">El proyecto</a></li>
+        <li><a href="">Saludos...</a></li>
+        <li><a href="#">Esto o aquello...</a></li>
+		<li><a href="#">Repetir ayuda...</a></li>
+		<li class="active"><a href="file:///C:/Users/DeXuS/Desktop/LaSSI/webLogica/lassi-utn.github.io/repetirHastaQue_PidamosAlgo.html">Repetir hasta que...</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <h4><a href="http://pseint.sourceforge.net/index.php?page=descargas.php"><span class="glyphicon glyphicon-download"></span> PSeInt</a></h4>
+	  </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+	  <p><a class="active">Pidamos algo...</a></p>
+	  <p><a href="#">Un pedido válido por favor…</a></p>
+    </div>
+    <div class="col-sm-8 text-left"> 
+      
+<h2> Pidamos algo... </h2>
+        <p>En la sección "Saludos", vimos como un algoritmo interactuaba con vos, solicitando tu nombre y saludándote luego en pantalla. 
+		Luego, cuando necesitamos saludara a un grupo de amigos, el algoritmo lo hizo por medio de la repetición de una serie de instrucciones.</p> 
+         <p>Sigamos entonces con la historia…</p>
+         <p>Digamos que luego de un tiempo, los amigos que estaban reunidos comenzaron a sentir hambre y se decidieron por encargar empanadas.</p> 
+         <p>Aprovechando esta situación, imaginemos ahora que el algoritmo que desarrollamos previamente es utilizado por una central de pedidos, llamémosla PedidosAhora. 
+		Si queremos que el algoritmo de PedidosAhora salude a cada amigo, y le tome un pedido de empanadas, podríamos plantear lo siguiente:</p>
+<hr>
+<div id="main" class="container-fluid">
+<h4>Pseudocódigo</h4>
+<pre id="textoACopiar">
+<p>PROCESO PedidosAhora_1
+<p style= "text-indent: 20px">DEFINIR contVueltas, saborEmp como ENTERO
+<p style= "text-indent: 20px">DEFINIR nombre como CARACTER
+<p style= "text-indent: 40px">PARA contVueltas = 1 HASTA 3 CON PASO 1 HACER
+<p style= "text-indent: 80px">ESCRIBIR "Hola, ¿Cómo te llamas?"
+<p style= "text-indent: 80px">LEER Nombre
+<p style= "text-indent: 80px">ESCRIBIR "Hola ", nombre, ", un gusto conocerte"
+<p style= "text-indent: 80px">REPETIR
+<p style= "text-indent: 120px">ESCRIBIR "Por favor", nombre, "dime que sabor de empanada desea encargar, entre opciones 1 a 5"
+<p style= "text-indent: 120px">LEER saborEmp
+<p style= "text-indent:80px">HASTA QUE saborEmp >=1 Y saborEmp <=5
+<p style= "text-indent: 40px">FINPARA
+<p style= "text-indent: 40px">ESCRIBIR "Ya tengo el pedido listo, pronto les llegará al domicilio"
+<p>FINPROCESO</p>
+</pre>
+        <button id="btnCopiar" class="btn btn-primary">COPIAR pseudocódigo al portapapeles</button>
+        <div id="alerta" class="alert invisible"></div>
+</div>
+	    
+ <p>Ejecutemos el pseudocódigo ayudándonos con la función Paso a Paso. ¿Qué pasa además de pedirnos el nombre y saludarnos? La compu (o la central de PedidosAhora para este ejemplo), nos pide que definamos el tipo de empanadas que vamos a querer, y nos da como opciones válidas, los códigos numéricos de 1 a 5. Asumamos, por simplicidad, que la central de PedidosAhora sólo nos permite hacerlos para un único tipo de empanada por usuario.</p> 
+ <p>>Una vez que el primer usuario coloca un código entre 1 y 5, PedidosAhora pasa a saludar al siguiente amigo, para luego solicitarle que defina qué sabor de empanada va a querer. ¿Qué acaba de pasar? Se repite la acción, tal como lo establecimos con la repetitiva Para.</p>
+ <p>Ahora, poniéndonos en el lugar del segundo amigo, supongamos que nos distraemos e ingresamos el número 7 como código de sabor. 
+¿Qué sucede? ¡PedidosAhora nos vuelve a pedir que ingresemos el código! Por suerte, nos anticipa del error y nos permite corregirnos.</p> 
+<br>
+<h3>Observando...</h3>
+ <p>Si vemos el código paso a paso mientras lo ejecutamos, habremos visto que lo que acaba de suceder es la repetición de las instrucciones dentro del segmento de pseudocódigo entre Repetir y Hasta que. Este es otro tipo de repetitiva, conocida como <b>Repetir-Hasta</b></p> 
+
+ <p>>En este caso, este tipo de bucle nos permite realizar una serie de instrucciones, para luego repetirlas en caso de que exista una condición que no se cumple. Es decir, básicamente, nos deja hacer algo hasta que lo hagamos bien. Siempre lo haremos una vez al menos, y luego el algoritmo evalúa si puede seguir o nos pide que repitamos la acción.</p> 
+
+ <p>Esta estructura de control Repetir-Hasta, es frecuentemente utilizado para validar datos de entrada a un algoritmo. Esto significa que, si Juan ingresa un código 7, ese código no es válido, y se le pide repetir el ingreso del código. Cuando Juan ingresa un código entre 1 y 5, digamos 4, entonces el algoritmo considera que la condición para continuar se cumple (es verdadera) y permite seguir adelante con el resto de las instrucciones.</p> 
+
+ <p>Si vemos el pseudocódigo, la condición de salida del bucle, que se encuentra luego del “hasta que”, es que la variable saborEmp sea mayor o igual a 1 y, al mismo tiempo, menor o igual a 5.</p> 
+<br>
+	
+	<script>
+    //Asigno el evento "click" del botón para provoar el copiado
+    document.getElementById('btnCopiar').addEventListener('click', copiarAlPortapapeles);
+
+    //Función que lanza el copiado del código
+    function copiarAlPortapapeles(ev){
+        var codigoACopiar = document.getElementById('textoACopiar');    //Elemento a copiar
+        //Debe estar seleccionado en la página para que surta efecto, así que...
+        var seleccion = document.createRange(); //Creo una nueva selección vacía
+        seleccion.selectNodeContents(codigoACopiar);    //incluyo el nodo en la selección
+        //Antes de añadir el intervalo de selección a la selección actual, elimino otros que pudieran existir (sino no funciona en Edge)
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(seleccion);  //Y la añado a lo seleccionado actualmente
+        try {
+            var res = document.execCommand('copy'); //Intento el copiado
+            if (res)
+                exito();
+            else
+                fracaso();
+
+            mostrarAlerta();
+        }
+        catch(ex) {
+            excepcion();
+        }
+        window.getSelection().removeRange(seleccion);
+    }
+
+///////
+// Auxiliares para mostrar y ocultar mensajes
+///////
+    var divAlerta = document.getElementById('alerta');
+    
+    function exito() {
+        divAlerta.innerText = '¡¡Código copiado al portapapeles!!';
+        divAlerta.classList.add('alert-success');
+    }
+
+    function fracaso() {
+        divAlerta.innerText = '¡¡Ha fallado el copiado al portapapeles!!';
+        divAlerta.classList.add('alert-warning');
+    }
+
+    function excepcion() {
+        divAlerta.innerText = 'Se ha producido un error al copiar al portapaples';
+        divAlerta.classList.add('alert-danger');
+    }
+
+    function mostrarAlerta() {
+        divAlerta.classList.remove('invisible');
+        divAlerta.classList.add('visible');
+        setTimeout(ocultarAlerta, 1500);
+    }
+
+    function ocultarAlerta() {
+        divAlerta.innerText = '';
+        divAlerta.classList.remove('alert-success', 'alert-warning', 'alert-danger', 'visible');
+        divAlerta.classList.add('invisible');
+    }
+</script>
+
+
+</body>          
+	</div>
+	
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+		<h5><a href="https://www.facebook.com/LASSI-Laboratorio-de-Sistemas-de-Soporte-a-la-Industria-104336884799374/" target="_blank">LaSSI</a></h5>
+        <p<h5><a href="https://www.frc.utn.edu.ar/" target="_blank"> <img src="utn frc.jpg" height="100px" width="150px"/> </a></h5>
+		
+      </div>
+	 </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-right">
+  <p>Desarrollo</p>
+</footer>
+
+</body>
+</html>
