@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>WEB intro lógica </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://norfipc.com/js/clipboard.min.js"> </script>
+  
+
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius:0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #355;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+	
+  </style>  
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+	<li><a href="https://lassi-utn.github.io/proyecto.html">El proyecto</a></li>
+    <li><a href="https://lassi-utn.github.io/saludos.html">Saludos...</a></li>
+    <li class="active"><a href="https://lassi-utn.github.io/selectivaDoble">Esto o aquello...</a></li>
+	<li><a href="https://lassi-utn.github.io/RepetirAyuda_Situacion.html">Repetir ayuda...</a></li>
+	<li><a href="https://lassi-utn.github.io/RepitiendoHastaQue_PidamosAlgo.html">Repetir hasta que...</a></li>
+    <li><a href="https://lassi-utn.github.io/contacto.html">Contacto</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <h4><a href="http://pseint.sourceforge.net/index.php?page=descargas.php"><span class="glyphicon glyphicon-download"></span> PSeInt</a></h4>
+	  </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <p><a class="active">Ahora o más tarde...</a></p>
+	   
+    </div>
+    <div class="col-sm-8 text-left"> 
+      <h2>Ahora o más tarde...</h2>
+      <p>Ahora ejecutemos el siguiente código en PSeInt. Hagámoslo una vez dando la respuesta SI, y otra dando la repuesta NO.
+      <hr>
+	
+	<style>
+	.shadow p-3 mb-5 bg-white rounded{overflow:auto;}
+	.adapt{white-space:pre-wrap;}
+	</style>
+	
+    <div id="main" class="container-fluid">
+        <h4>Pseudocódigo</h4>
+	<pre id="textoACopiar">
+<p>PROCESO Nombre_1
+<p style="text-indent: 40px">DEFINIR nombre, varAmigo COMO CARACTER
+<p style="text-indent: 40px">ESCRIBIR "Hola, ¿cómo te llamas?"
+<p style="text-indent: 40px">LEER nombre
+<p style="text-indent: 40px">ESCRIBIR "Hola, ", nombre, " un gusto conocerte"
+<p style="text-indent: 40px">ESCRIBIR "Quieres agregar amigos a tus contactos? (SI/NO)"
+<p style="text-indent: 40px">LEER varAmigo 
+<p style="text-indent: 40px">SI varAmigo = "SI" ENTONCES
+<p style="text-indent: 60px">ESCRIBIR "Genial !! Vamos a sumar amigos !!"
+<p style="text-indent: 40px">SINO 
+<p style="text-indent: 60px">ESCRIBIR "Bien, luego podrás hacerlo de todas maneras"
+<p style="text-indent: 40px">FINSI
+<p>FINPROCESO</p>
+</pre>
+        <button id="btnCopiar" class="btn btn-primary">COPIAR pseudocódigo al portapapeles</button>
+        <div id="alerta" class="alert invisible"></div>
+    </div>
+
+<script>
+    //Asigno el evento "click" del botón para provoar el copiado
+    document.getElementById('btnCopiar').addEventListener('click', copiarAlPortapapeles);
+
+    //Función que lanza el copiado del código
+    function copiarAlPortapapeles(ev){
+        var codigoACopiar = document.getElementById('textoACopiar');    //Elemento a copiar
+        //Debe estar seleccionado en la página para que surta efecto, así que...
+        var seleccion = document.createRange(); //Creo una nueva selección vacía
+        seleccion.selectNodeContents(codigoACopiar);    //incluyo el nodo en la selección
+        //Antes de añadir el intervalo de selección a la selección actual, elimino otros que pudieran existir (sino no funciona en Edge)
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(seleccion);  //Y la añado a lo seleccionado actualmente
+        try {
+            var res = document.execCommand('copy'); //Intento el copiado
+            if (res)
+                exito();
+            else
+                fracaso();
+
+            mostrarAlerta();
+        }
+        catch(ex) {
+            excepcion();
+        }
+        window.getSelection().removeRange(seleccion);
+    }
+
+///////
+// Auxiliares para mostrar y ocultar mensajes
+///////
+    var divAlerta = document.getElementById('alerta');
+    
+    function exito() {
+        divAlerta.innerText = '¡¡Código copiado al portapapeles!!';
+        divAlerta.classList.add('alert-success');
+    }
+
+    function fracaso() {
+        divAlerta.innerText = '¡¡Ha fallado el copiado al portapapeles!!';
+        divAlerta.classList.add('alert-warning');
+    }
+
+    function excepcion() {
+        divAlerta.innerText = 'Se ha producido un error al copiar al portapaples';
+        divAlerta.classList.add('alert-danger');
+    }
+
+    function mostrarAlerta() {
+        divAlerta.classList.remove('invisible');
+        divAlerta.classList.add('visible');
+        setTimeout(ocultarAlerta, 1500);
+    }
+
+    function ocultarAlerta() {
+        divAlerta.innerText = '';
+        divAlerta.classList.remove('alert-success', 'alert-warning', 'alert-danger', 'visible');
+        divAlerta.classList.add('invisible');
+    }
+</script>
+</body>
+<p>¿Qué sucedió? Si como respuesta contestamos SI, entonces la salida del algoritmo fue, "Genial !! Vamos a sumar amigos !!" 
+Mientras que si la respuesta fue NO, la salida fue "Bien, luego podrás hacerlo de todas maneras". 
+Es decir, no hubo una única secuencia de acciones, sino más de una alternativa.  </p>
+
+Hemos visto que la salida impresa cambia dependiendo de nuestra respuesta. Esto difiere del caso del saludo en la sección previa, 
+pues allí siempre la secuencia de acciones es la misma. Aquí, existen acciones posibles que dependen de si previamente se verificó 
+el cumplimiento de una condición o no. Esta estructura se conoce como <b> Estructura Selectiva o Condicional</b>. En este caso, se trata de una selectiva doble. 
+También existen otros tipos de selectivas, como la simple o la múltiple. </p>
+
+El inicio de una selectiva se da con la evaluación de una condición. Una pregunta que sólo puede tener dos respuestas válidas: 
+verdadero o falso. Para lograr esto, en la condición siempre comparamos una variable con un valor. Cuando ejecutemos el algoritmo, 
+la variable tendrá un valor dado, el cual se comparará con el otro valor que planteamos (en gral., lo vamos a presentar como una constante numérica o un texto). 
+En nuestro caso, si respondemos "SI", estamos ingresando ese valor a la variable varAmigo, y luego esa variable se compara con el texto "SI": la condición queda 
+SI = SI, lo cual se evalua, evidentemente, como verdadero. </p>
+<hr>
+<h3> Juguemos en PSeInt...</h3>
+Ejecutemos este código en PseInt.  Y luego, observemos:<br>
+1-¿Qué sucede si coloco la escritura de la salida debajo de la línea del FINSI? <br>
+2-¿Qué pasa si no pongo ninguna acción por el lado del Falso en la condición y la misma toma el valor Falso durante una ejecución del algoritmo?<br>
+3-¿Puedo ejecutar una selectiva que no tenga acción alguna por el lado Verdadero y sí alguna acción por el lado del Falso? <br>
+<hr>
+<hr>
+    </div>
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+		<h5><a href="https://www.facebook.com/LASSI-Laboratorio-de-Sistemas-de-Soporte-a-la-Industria-104336884799374/" target="_blank">LaSSI</a></h5>
+        <p<h5><a href="https://www.frc.utn.edu.ar/" target="_blank"> <img src="utn frc.jpg" height="100px" width="150px"/> </a></h5>
+      </div>
+	 </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-right">
+  <p>Desarrollo</p>
+</footer>
+
+</body>
+</html>
